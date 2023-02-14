@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 def loadProperties(filename) {
@@ -63,14 +64,17 @@ android {
     productFlavors {
         local {
             dimension "release"
+            buildConfigField(ValString, APP_NAME, APP_NAME_LOCAL)
         }
 
         stg {
             dimension "release"
+            buildConfigField(ValString, APP_NAME, APP_NAME_STG)
         }
 
         product {
             dimension "release"
+            buildConfigField(ValString, APP_NAME, APP_NAME_PRODUCT)
         }
     }
 
@@ -110,8 +114,24 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'com.github.bumptech.glide:glide:4.14.2'
+
+    //
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+
     implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // DI
+    implementation 'io.insert-koin:koin-android:3.3.2'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    // Room DB
+    implementation 'androidx.room:room-runtime:2.5.0'
+    implementation 'androidx.room:room-ktx:2.5.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
 
 }
