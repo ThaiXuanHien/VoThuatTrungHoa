@@ -78,7 +78,7 @@ fun ByteArray.convertToHex(): String {
         var halfbyte: Int = b.toInt() ushr 4 and 0x0F
         var twoHalf = 0
         do {
-            buf.append(if (halfbyte in 0..9) ('0'.code + halfbyte).toChar() else ('a'.toInt() + (halfbyte - 10)).toChar())
+            buf.append(if (halfbyte in 0..9) ('0'.code + halfbyte).toChar() else ('a'.code + (halfbyte - 10)).toChar())
             halfbyte = b.toInt() and 0x0F
         } while (twoHalf++ < 1)
     }
