@@ -37,7 +37,7 @@ android {
     def APP_NAME = "APP_NAME"
     def APP_ID = "APP_ID"
 
-    flavorDimensions "release"
+    flavorDimensions "version"
     signingConfigs {
         release {
             keyAlias secrets['keyAlias']
@@ -63,17 +63,17 @@ android {
 
     productFlavors {
         local {
-            dimension "release"
+            dimension "version"
             buildConfigField(ValString, APP_NAME, APP_NAME_LOCAL)
         }
 
         stg {
-            dimension "release"
+            dimension "version"
             buildConfigField(ValString, APP_NAME, APP_NAME_STG)
         }
 
         product {
-            dimension "release"
+            dimension "version"
             buildConfigField(ValString, APP_NAME, APP_NAME_PRODUCT)
         }
     }
@@ -113,9 +113,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // image
     implementation 'com.github.bumptech.glide:glide:4.14.2'
 
-    //
+    // Networking
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.10.1'
