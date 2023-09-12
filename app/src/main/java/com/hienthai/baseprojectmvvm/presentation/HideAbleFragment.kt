@@ -7,11 +7,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 
-open class HidableFragment : Fragment() {
+open class HideAbleFragment : Fragment() {
     /**
      * Lifecycle that based on [onFragmentDisplayed] and [onFragmentHidden] callbacks
      */
-    protected val visibleViewLifecycle = SimpleLifecycleOwner()
+    private val visibleViewLifecycle = SimpleLifecycleOwner()
 
     private var activityStarted : Boolean = false
 

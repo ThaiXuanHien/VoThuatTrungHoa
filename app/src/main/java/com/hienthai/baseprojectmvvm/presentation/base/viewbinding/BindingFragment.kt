@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.hienthai.baseprojectmvvm.R
 import com.hienthai.baseprojectmvvm.extensions.getBinding
-import com.hienthai.baseprojectmvvm.presentation.HidableFragment
+import com.hienthai.baseprojectmvvm.presentation.HideAbleFragment
 
-
-open class BindingFragment<V : ViewBinding> : HidableFragment() {
+open class BindingFragment<V : ViewBinding> : HideAbleFragment() {
 
     private var _binding: V? = null
     private var loadingDialog: Dialog? = null
