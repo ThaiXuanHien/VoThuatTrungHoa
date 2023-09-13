@@ -6,7 +6,7 @@ import com.hienthai.baseprojectmvvm.R
 
 import com.hienthai.baseprojectmvvm.databinding.ActivityMainBinding
 import com.hienthai.baseprojectmvvm.presentation.base.viewbinding.BindingActivity
-import com.hienthai.baseprojectmvvm.presentation.screens.UserListFragment
+import com.hienthai.baseprojectmvvm.presentation.screens.note.NoteFragment
 
 class MainActivity : BindingActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +14,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, UserListFragment())
+                .replace(R.id.container, NoteFragment())
                 .commitNow()
         }
 

@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.hienthai.baseprojectmvvm.data.datasource.local.db.dao.UserInfoDAO
-import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.UserInfoEntity
+import com.hienthai.baseprojectmvvm.data.datasource.local.db.dao.NoteDAO
+import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
 
 
-@Database(entities = [UserInfoEntity::class], version = 1, exportSchema = false)
+@Database(entities = [NoteEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userInfoDao(): UserInfoDAO
+    abstract fun noteDao(): NoteDAO
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -21,7 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
                     Room.databaseBuilder(
                         context,
                         AppDatabase::class.java,
-                        "tb_user_info"
+                        "tb_note"
                     )
                         .fallbackToDestructiveMigration()
                         .build()

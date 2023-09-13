@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFB5CE"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_notes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fadingEdgeLength="@dimen/dp48"
+        android:requiresFadingEdge="vertical"
+        android:background="@null"
+        android:padding="@dimen/dp8"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/inputCard"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/inputCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp16"
+        app:cardCornerRadius="@dimen/dp8"
+        app:cardElevation="@dimen/dp8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcv_notes">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp8"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp8"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                tools:text="30/06/1998"
+                app:layout_constraintBottom_toTopOf="@+id/edt_input_note"
+                app:layout_constraintEnd_toStartOf="@+id/btn_save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <EditText
+                android:id="@+id/edt_input_note"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/dp48"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:padding="@dimen/dp8"
+                android:imeOptions="actionDone"
+                android:background="@null"
+                android:hint="Enter Note ..."
+                android:lines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+            <ImageView
+                android:id="@+id/btn_save"
+                android:layout_width="@dimen/dp48"
+                android:layout_height="@dimen/dp48"
+                android:src="@drawable/baseline_add_24"
+                android:scaleType="center"
+                app:layout_constraintStart_toEndOf="@+id/edt_input_note"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edt_input_note"
+                app:layout_constraintBottom_toBottomOf="@+id/edt_input_note"
+                app:tint="#FFB5CE" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
