@@ -4,6 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
 import com.hienthai.baseprojectmvvm.databinding.FragmentNoteBinding
+import com.hienthai.baseprojectmvvm.extensions.observe
 import com.hienthai.baseprojectmvvm.presentation.BaseFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,9 +31,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
     private fun saveNote() {
         binding.run {
             val noteText = edtInputNote.text.toString().takeIf { it.isNotBlank() } ?: return@run
-
             viewModel.saveNote(noteText)
-
             edtInputNote.setText("")
         }
     }
@@ -48,7 +47,9 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
     override fun initData() {
         super.initData()
 
-        viewModel.noteList.onEach(::renderNotes).launchIn(lifecycleScope)
+        viewModel.noteList.observe(viewLifecycleOwner) {
+            renderNotes(it)
+        }
         viewModel.newDate.onEach(::renderDate).launchIn(lifecycleScope)
     }
 

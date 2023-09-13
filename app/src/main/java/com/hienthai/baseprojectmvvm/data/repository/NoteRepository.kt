@@ -14,7 +14,7 @@ class NoteRepository(context: Context) {
         noteDAO = AppDatabase.newInstance(context).noteDao()
     }
 
-    var noteList: Flow<List<NoteEntity>> = noteDAO.getAllNote()
+    fun getAllNote() = noteDAO.getAllNote()
 
     suspend fun save(note: NoteEntity) {
         noteDAO.save(note)
