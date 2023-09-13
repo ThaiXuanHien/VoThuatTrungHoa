@@ -1,14 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 package com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav
 
-
-import CurrentTabHistoryController
-import CurrentTabStrategy
-import FragNavTabHistoryController
-import NavigationStrategy
-import UniqueTabHistoryController
-import UniqueTabHistoryStrategy
-import UnlimitedTabHistoryStrategy
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.annotation.CheckResult
@@ -19,7 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.CurrentTabHistoryController
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.CurrentTabStrategy
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.FragNavTabHistoryController
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.NavigationStrategy
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.UniqueTabHistoryController
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.UniqueTabHistoryStrategy
 import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.UnlimitedTabHistoryController
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory.UnlimitedTabHistoryStrategy
 
 import org.json.JSONArray
 import java.lang.ref.WeakReference
@@ -63,7 +62,7 @@ class FragNavController constructor(
     var rootFragmentListener: RootFragmentListener? = null
 
     var transactionListener: TransactionListener? = null
-    var navigationStrategy: NavigationStrategy = CurrentTabStrategy()
+    var navigationStrategy: NavigationStrategy = CurrentTabStrategy
         set(value) {
             field = value
             fragNavTabHistoryController = when (value) {

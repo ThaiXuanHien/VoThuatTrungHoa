@@ -1,6 +1,5 @@
 package com.hienthai.baseprojectmvvm.presentation.base.navigator
 
-import FragNavController
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -8,6 +7,8 @@ import com.hienthai.baseprojectmvvm.R
 import com.hienthai.baseprojectmvvm.extensions.hideKeyboard
 import com.hienthai.baseprojectmvvm.extensions.makeFullScreen
 import com.hienthai.baseprojectmvvm.presentation.BaseFragment
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.FragNavController
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.FragNavTransactionOptions
 import com.hienthai.baseprojectmvvm.presentation.base.viewbinding.BindingActivity
 
 abstract class NavigationActivity<V : ViewBinding> : BindingActivity<V>(), FragNavController.TransactionListener,

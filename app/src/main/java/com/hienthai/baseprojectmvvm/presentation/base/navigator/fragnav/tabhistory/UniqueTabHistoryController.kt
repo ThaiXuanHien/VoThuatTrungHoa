@@ -1,5 +1,4 @@
 package com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.tabhistory
-import CollectionFragNavTabHistoryController
 import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.FragNavPopController
 import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.FragNavSwitchController
 import java.util.*

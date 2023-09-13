@@ -1,9 +1,10 @@
 package com.hienthai.baseprojectmvvm.presentation.base.navigator
 
-import FragNavController
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.hienthai.baseprojectmvvm.presentation.base.navigator.fragnav.FragNavController
 
 import java.util.*
 

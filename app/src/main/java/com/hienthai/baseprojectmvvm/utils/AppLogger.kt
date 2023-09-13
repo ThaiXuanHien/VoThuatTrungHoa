@@ -1,6 +1,6 @@
 package com.hienthai.baseprojectmvvm.utils
 
-import androidx.viewbinding.BuildConfig
+import com.hienthai.baseprojectmvvm.BuildConfig
 import timber.log.Timber
 
 object AppLogger {
