@@ -8,6 +8,7 @@ import com.hienthai.baseprojectmvvm.databinding.ItemNoteBinding
 
 class NoteViewHolder(
     private val binding: ItemNoteBinding,
+    private val onItemClick: (NoteEntity) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     var item: NoteEntity? = null
@@ -19,13 +20,17 @@ class NoteViewHolder(
         binding.run {
             tvTitleItemNote.text = item.title
             tvDateItemNote.text = item.date
+
+            root.setOnClickListener {
+                onItemClick(item)
+            }
         }
     }
     companion object {
-        fun create(parent: ViewGroup) = ItemNoteBinding.inflate(
+        fun create(parent: ViewGroup, onItemClick: (NoteEntity) -> Unit) = ItemNoteBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
-        ).let(::NoteViewHolder)
+        ).let { NoteViewHolder(it, onItemClick) }
     }
 }

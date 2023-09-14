@@ -14,7 +14,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class NoteFragment : BaseFragment<FragmentNoteBinding>() {
 
     private val viewModel: NoteViewModel by viewModel()
-    private val adapter by lazy { NoteAdapter() }
+    private val adapter by lazy { NoteAdapter(::onItemClicked) }
+    private var selectedNote: NoteEntity? = null
     override fun initView() {
         super.initView()
 
@@ -31,8 +32,9 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
     private fun saveNote() {
         binding.run {
             val noteText = edtInputNote.text.toString().takeIf { it.isNotBlank() } ?: return@run
-            viewModel.saveNote(noteText)
+            viewModel.saveNote(selectedNote?.id, noteText)
             edtInputNote.setText("")
+            selectedNote = null
         }
     }
 
@@ -51,6 +53,11 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
             renderNotes(it)
         }
         viewModel.newDate.onEach(::renderDate).launchIn(lifecycleScope)
+    }
+
+    private fun onItemClicked(noteEntity: NoteEntity) {
+        selectedNote = noteEntity
+        binding.edtInputNote.setText(noteEntity.title)
     }
 
 }

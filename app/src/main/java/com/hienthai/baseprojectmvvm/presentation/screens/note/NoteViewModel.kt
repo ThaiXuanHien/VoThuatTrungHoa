@@ -39,18 +39,20 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {
         }
     }
 
-    fun saveNote(title: String) {
+    fun saveNote(id: Int?, title: String) {
         viewModelScope.launch {
-            noteRepository.save(
-                createNote(title)
-            )
+            if (id != null) {
+                val existingNote = _noteList.value.find { it.id == id }
+                if (existingNote != null) {
+                    val updatedNote = existingNote.copy(title = title, date = createDate())
+                    noteRepository.save(updatedNote)
+                }
+            } else {
+                val newNote = NoteEntity(title = title, date = createDate())
+                noteRepository.save(newNote)
+            }
         }
     }
-
-    private fun createNote(title: String) = NoteEntity(
-        title = title,
-        date = createDate()
-    )
 
     private fun createDate(): String = DateFormat.format("dd/MM/yyyy, hh:mm:ss", Date()).toString()
 
