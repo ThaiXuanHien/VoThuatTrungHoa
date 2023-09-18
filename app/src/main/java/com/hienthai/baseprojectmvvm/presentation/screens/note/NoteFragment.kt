@@ -1,6 +1,9 @@
 package com.hienthai.baseprojectmvvm.presentation.screens.note
 
+import android.os.Build
+import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
@@ -38,6 +41,21 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
             edtInputNote.setText("")
             selectedNote = null
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            val restoredNote = savedInstanceState.getParcelable("note", NoteEntity::class.java)
+            if (restoredNote != null) {
+                selectedNote = restoredNote
+            }
+        }
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("note", selectedNote)
     }
 
     private fun renderDate(date: String) {
