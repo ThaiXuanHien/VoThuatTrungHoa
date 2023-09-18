@@ -1,5 +1,6 @@
 package com.hienthai.baseprojectmvvm.presentation.screens.note
 
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
@@ -9,6 +10,7 @@ import com.hienthai.baseprojectmvvm.presentation.BaseFragment
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.log
 
 
 class NoteFragment : BaseFragment<FragmentNoteBinding>() {

@@ -22,20 +22,19 @@ import java.util.Date
 
 class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
-//    private val _noteList = sharedEventFlow<List<NoteEntity>>()
-//    val noteList = _noteList.asSharedFlow()
     private val _noteList = stateFlow(listOf<NoteEntity>())
     val noteList = _noteList.asStateFlow()
+
     init {
         noteRepository.getAllNote().onEach {
-            _noteList.tryEmit(it)
+            _noteList.value = it
         }.launchIn(viewModelScope)
     }
 
     val newDate = flow {
         while (true) {
             emit(createDate())
-            delay(500L)
+            delay(500)
         }
     }
 
