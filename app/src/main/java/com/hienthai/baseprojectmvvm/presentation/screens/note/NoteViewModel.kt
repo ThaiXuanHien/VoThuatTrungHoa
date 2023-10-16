@@ -2,6 +2,7 @@ package com.hienthai.baseprojectmvvm.presentation.screens.note
 
 import android.provider.ContactsContract.CommonDataKinds.Note
 import android.text.format.DateFormat
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
@@ -27,7 +28,9 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {
 
     init {
         noteRepository.getAllNote().onEach {
+            Log.e("Hien", "noteRepository: Hien3")
             _noteList.value = it
+
         }.launchIn(viewModelScope)
     }
 

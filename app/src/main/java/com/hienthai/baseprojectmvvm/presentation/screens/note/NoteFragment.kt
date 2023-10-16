@@ -71,8 +71,12 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
 
         viewModel.noteList.observe(viewLifecycleOwner) {
             renderNotes(it)
+            Log.e("Hien", "noteList.observe: Hien1", )
         }
         viewModel.newDate.onEach(::renderDate).launchIn(lifecycleScope)
+
+        Log.e("Hien", "noteList.observe: Hien2", )
+
     }
 
     private fun onItemClicked(noteEntity: NoteEntity) {
