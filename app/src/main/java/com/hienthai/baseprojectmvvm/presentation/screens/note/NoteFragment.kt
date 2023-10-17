@@ -3,13 +3,16 @@ package com.hienthai.baseprojectmvvm.presentation.screens.note
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
 import com.hienthai.baseprojectmvvm.databinding.FragmentNoteBinding
 import com.hienthai.baseprojectmvvm.extensions.observe
+import com.hienthai.baseprojectmvvm.extensions.toast
 import com.hienthai.baseprojectmvvm.presentation.BaseFragment
+import com.hienthai.baseprojectmvvm.utils.ConnectivityObserver
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -77,6 +80,14 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
 
         Log.e("Hien", "noteList.observe: Hien2", )
 
+        viewModel.networkStatus.observe(viewLifecycleOwner) {
+            when (it) {
+                ConnectivityObserver.NetworkStatus.Available -> requireContext().toast("Available")
+                ConnectivityObserver.NetworkStatus.Losing -> requireContext().toast("Losing")
+                ConnectivityObserver.NetworkStatus.Lost -> requireContext().toast("Lost")
+                ConnectivityObserver.NetworkStatus.Unavailable -> requireContext().toast("Unavailable")
+            }
+        }
     }
 
     private fun onItemClicked(noteEntity: NoteEntity) {

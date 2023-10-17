@@ -11,6 +11,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import com.hienthai.baseprojectmvvm.R
@@ -167,4 +168,7 @@ fun EditText.validate(validator: (String) -> Boolean, messageError: String) {
     }
 }
 // use: etUser.validate({ s -> s.length >= 6 }, "Minimum length = 6")
-fun String.isValidLenghtString(length: Int): Boolean  = this.length >= length
+fun String.isValidLengthString(length: Int): Boolean  = this.length >= length
+
+fun Context.toast(message: CharSequence) =
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

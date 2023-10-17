@@ -9,28 +9,40 @@ import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
 import com.hienthai.baseprojectmvvm.data.repository.NoteRepository
 import com.hienthai.baseprojectmvvm.extensions.sharedEventFlow
 import com.hienthai.baseprojectmvvm.extensions.stateFlow
+import com.hienthai.baseprojectmvvm.utils.ConnectivityObserver
+import com.hienthai.baseprojectmvvm.utils.NetworkStatusTracker
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.Date
 
-class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel() {
+class NoteViewModel(
+    private val noteRepository: NoteRepository,
+    private val networkStatusTracker: NetworkStatusTracker
+) : ViewModel() {
 
     private val _noteList = stateFlow(listOf<NoteEntity>())
     val noteList = _noteList.asStateFlow()
-
+    val networkStatus = sharedEventFlow<ConnectivityObserver.NetworkStatus>()
     init {
         noteRepository.getAllNote().onEach {
             Log.e("Hien", "noteRepository: Hien3")
             _noteList.value = it
 
+        }.launchIn(viewModelScope)
+
+        networkStatusTracker.observe().onEach {
+            networkStatus.tryEmit(it)
         }.launchIn(viewModelScope)
     }
 
