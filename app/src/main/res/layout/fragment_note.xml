@@ -60,7 +60,7 @@
                 android:imeOptions="actionDone"
                 android:background="@null"
                 android:hint="Enter Note ..."
-                android:lines="1"
+                android:singleLine="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_save"
                 app:layout_constraintStart_toStartOf="parent"

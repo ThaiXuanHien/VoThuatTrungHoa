@@ -93,6 +93,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
     private fun onItemClicked(noteEntity: NoteEntity) {
         selectedNote = noteEntity
         binding.edtInputNote.setText(noteEntity.title)
+        binding.edtInputNote.setSelection(binding.edtInputNote.text.length)
     }
 
 }
