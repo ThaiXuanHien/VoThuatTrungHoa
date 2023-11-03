@@ -141,5 +141,7 @@ dependencies {
     // FCM
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
 
+    implementation 'com.markodevcic:peko:3.0.1'
+
 
 }

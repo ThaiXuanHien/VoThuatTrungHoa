@@ -16,6 +16,8 @@
         android:theme="@style/Theme.BaseProjectMVVM"
         tools:targetApi="31">
         <activity
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:name=".presentation.MainActivity"
             android:exported="true">
