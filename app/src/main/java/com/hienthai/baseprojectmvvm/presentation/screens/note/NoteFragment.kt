@@ -2,22 +2,23 @@ package com.hienthai.baseprojectmvvm.presentation.screens.note
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
 import com.hienthai.baseprojectmvvm.databinding.FragmentNoteBinding
-import com.hienthai.baseprojectmvvm.extensions.navigator
 import com.hienthai.baseprojectmvvm.extensions.observe
 import com.hienthai.baseprojectmvvm.extensions.setSafeClickListener
 import com.hienthai.baseprojectmvvm.extensions.toast
 import com.hienthai.baseprojectmvvm.presentation.BaseFragment
-import com.hienthai.baseprojectmvvm.presentation.insets.noteDetailScreen
+import com.hienthai.baseprojectmvvm.presentation.customview.datetime.SingleDateAndTimePicker
+import com.hienthai.baseprojectmvvm.presentation.customview.datetime.SingleDateAndTimePickerDialog
 import com.hienthai.baseprojectmvvm.utils.ConnectivityObserver
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Calendar
+import java.util.TimeZone
 
 
 class NoteFragment : BaseFragment<FragmentNoteBinding>() {
@@ -25,9 +26,11 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
     private val viewModel: NoteViewModel by viewModel()
     private val adapter by lazy { NoteAdapter(::onItemClicked) }
     private var selectedNote: NoteEntity? = null
+    private lateinit var singleBuilder: SingleDateAndTimePickerDialog.Builder
+
     override fun initView() {
         super.initView()
-
+        initDateTime()
         binding.run {
             rcvNotes.layoutManager = LinearLayoutManager(context)
             SwipeHelper(viewModel::deleteNote).attachToRecyclerView(rcvNotes)
@@ -37,7 +40,9 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
             }
 
             tvDate.setSafeClickListener {
-                navigator?.navigate(screen = noteDetailScreen())
+//                navigator?.navigate(screen = noteDetailScreen())
+
+                singleBuilder.display()
             }
         }
     }
@@ -79,11 +84,8 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
 
         viewModel.noteList.observe(viewLifecycleOwner) {
             renderNotes(it)
-            Log.e("Hien", "noteList.observe: Hien1", )
         }
         viewModel.newDate.onEach(::renderDate).launchIn(lifecycleScope)
-
-        Log.e("Hien", "noteList.observe: Hien2", )
 
         viewModel.networkStatus.observe(viewLifecycleOwner) {
             when (it) {
@@ -99,6 +101,35 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
         selectedNote = noteEntity
         binding.edtInputNote.setText(noteEntity.title)
         binding.edtInputNote.setSelection(binding.edtInputNote.text.length)
+    }
+
+    private fun initDateTime() {
+        val calendar = Calendar.getInstance()
+        val defaultDate = calendar.time
+
+        singleBuilder = SingleDateAndTimePickerDialog.Builder(context)
+            .setTimeZone(TimeZone.getDefault())
+            .bottomSheet()
+            .curved()
+            .minutesStep(5)
+            .displayYears(true)
+            .todayText("今日")
+            .displayListener(object : SingleDateAndTimePickerDialog.DisplayListener {
+                override fun onDisplayed(picker: SingleDateAndTimePicker) {
+                    // Do something when displayed
+                }
+
+                override fun onClosed(picker: SingleDateAndTimePicker) {
+                    // Do something when closed
+                }
+            })
+            .listener { date ->
+                val cal = Calendar.getInstance()
+                cal.time = date
+                val year = cal.get(Calendar.YEAR)
+                val month = cal.get(Calendar.MONTH)
+                val day = cal.get(Calendar.DAY_OF_MONTH)
+            }
     }
 
 }

@@ -1,6 +1,5 @@
 package com.hienthai.baseprojectmvvm.presentation.screens.note
 
-import android.provider.ContactsContract.CommonDataKinds.Note
 import android.text.format.DateFormat
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -12,17 +11,10 @@ import com.hienthai.baseprojectmvvm.extensions.stateFlow
 import com.hienthai.baseprojectmvvm.utils.ConnectivityObserver
 import com.hienthai.baseprojectmvvm.utils.NetworkStatusTracker
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.Date
 

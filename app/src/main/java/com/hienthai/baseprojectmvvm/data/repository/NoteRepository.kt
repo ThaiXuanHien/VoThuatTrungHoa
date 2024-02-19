@@ -4,7 +4,6 @@ import android.content.Context
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.AppDatabase
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.dao.NoteDAO
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
-import kotlinx.coroutines.flow.Flow
 
 class NoteRepository(context: Context) {
 

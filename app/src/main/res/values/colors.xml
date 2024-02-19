@@ -12,4 +12,10 @@
 
     <!---->
     <color name="color_primary">#11ad9d</color>
+
+    <color name="picker_default_selector_color">#646464</color>
+    <color name="picker_default_text_color">#FF999999</color>
+    <color name="picker_default_selected_text_color">@android:color/black</color>
+    <color name="button_ok">#2196F3</color>
+
 </resources>
