@@ -4,6 +4,7 @@ import static com.hienthai.baseprojectmvvm.presentation.customview.datetime.Sing
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -79,7 +80,23 @@ public class WheelDayPicker extends WheelPicker<DateWithLabel> {
         for (int i = startDayOffset; i < 0; ++i) {
             instance.add(Calendar.DAY_OF_MONTH, 1);
             Date date = instance.getTime();
-            days.add(new DateWithLabel(getFormattedValue(date), date));
+            Locale currentLocale = getContext().getResources().getConfiguration().locale;
+            if (currentLocale.getLanguage().equals("ja")) {
+                days.add(new DateWithLabel(getFormattedValue(date), date));
+            } else {
+                days.add(new DateWithLabel(getFormattedValue(date)
+                        .replace(
+                                getFormattedValue(date).substring(0, 3),
+                                convertMonthEnglishToJapanese(getFormattedValue(date).substring(0, 3), getContext())
+                        )
+                        .replace(
+                                getFormattedValue(date)
+                                        .substring(getFormattedValue(date).length() - 3),
+                                convertDayEnglishToJapanese(getFormattedValue(date)
+                                        .substring(getFormattedValue(date).length() - 3), getContext())
+                        )
+                        , date));
+            }
         }
 
         //today
@@ -91,10 +108,68 @@ public class WheelDayPicker extends WheelPicker<DateWithLabel> {
         for (int i = 0; i < dayCount; ++i) {
             instance.add(Calendar.DATE, 1);
             Date date = instance.getTime();
-            days.add(new DateWithLabel(getFormattedValue(date), date));
+            Locale currentLocale = getContext().getResources().getConfiguration().locale;
+            if (currentLocale.getLanguage().equals("ja")) {
+                days.add(new DateWithLabel(getFormattedValue(date), date));
+            } else {
+                days.add(new DateWithLabel(getFormattedValue(date)
+                        .replace(
+                                getFormattedValue(date).substring(0, 3),
+                                convertMonthEnglishToJapanese(getFormattedValue(date).substring(0, 3), getContext())
+                        )
+                        .replace(
+                                getFormattedValue(date)
+                                        .substring(getFormattedValue(date).length() - 3),
+                                convertDayEnglishToJapanese(getFormattedValue(date)
+                                        .substring(getFormattedValue(date).length() - 3), getContext())
+                        )
+                        , date));
+            }
+
         }
 
         return days;
+    }
+
+    public String convertMonthEnglishToJapanese(String month, Context context) {
+        Locale currentLocale = context.getResources().getConfiguration().locale;
+        if (currentLocale.getLanguage().equals("ja")) {
+            return month;
+        } else {
+            return switch (month.toLowerCase()) {
+                case "jan" -> "1月";
+                case "feb" -> "2月";
+                case "mar" -> "3月";
+                case "apr" -> "4月";
+                case "may" -> "5月";
+                case "jun" -> "6月";
+                case "jul" -> "7月";
+                case "aug" -> "8月";
+                case "sep" -> "9月";
+                case "oct" -> "10月";
+                case "nov" -> "11月";
+                case "dec" -> "12月";
+                default -> "";
+            };
+        }
+    }
+
+    public String convertDayEnglishToJapanese(String day, Context context) {
+        Locale currentLocale = context.getResources().getConfiguration().locale;
+        if (currentLocale.getLanguage().equals("ja")) {
+            return day;
+        } else {
+            return switch (day.toLowerCase()) {
+                case "mon" -> "月";
+                case "tue" -> "火";
+                case "wed" -> "水";
+                case "thu" -> "木";
+                case "fri" -> "金";
+                case "sat" -> "土";
+                case "sun" -> "日";
+                default -> "";
+            };
+        }
     }
 
     protected String getFormattedValue(Object value) {
