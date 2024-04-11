@@ -2,7 +2,6 @@ package com.hienthai.baseprojectmvvm.presentation.screens.note
 
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,15 +11,10 @@ import com.hienthai.baseprojectmvvm.extensions.observe
 import com.hienthai.baseprojectmvvm.extensions.setSafeClickListener
 import com.hienthai.baseprojectmvvm.extensions.toast
 import com.hienthai.baseprojectmvvm.presentation.BaseFragment
-import com.hienthai.baseprojectmvvm.presentation.customview.datetime.SingleDateAndTimePicker
-import com.hienthai.baseprojectmvvm.presentation.customview.datetime.SingleDateAndTimePickerDialog
 import com.hienthai.baseprojectmvvm.utils.ConnectivityObserver
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
 
 
 class NoteFragment : BaseFragment<FragmentNoteBinding>() {
@@ -39,9 +33,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
                 saveNote()
             }
 
-            tvDate.setSafeClickListener {
-//                navigator?.navigate(screen = noteDetailScreen())
-            }
+            tvDate.setSafeClickListener {}
         }
     }
 
@@ -64,6 +56,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding>() {
             }
         }
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable("note", selectedNote)

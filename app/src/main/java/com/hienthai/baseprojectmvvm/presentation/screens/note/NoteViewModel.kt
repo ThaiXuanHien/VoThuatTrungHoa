@@ -1,7 +1,6 @@
 package com.hienthai.baseprojectmvvm.presentation.screens.note
 
 import android.text.format.DateFormat
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hienthai.baseprojectmvvm.data.datasource.local.db.entity.NoteEntity
@@ -28,7 +27,6 @@ class NoteViewModel(
     val networkStatus = sharedEventFlow<ConnectivityObserver.NetworkStatus>()
     init {
         noteRepository.getAllNote().onEach {
-            Log.e("Hien", "noteRepository: Hien3")
             _noteList.value = it
 
         }.launchIn(viewModelScope)
