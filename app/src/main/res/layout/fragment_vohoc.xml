@@ -10,12 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.rajat.pdfviewer.PdfRendererView
-            android:id="@+id/pdf_viewer"
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </com.rajat.pdfviewer.PdfRendererView>
+            android:layout_height="match_parent"/>
 
     </com.hienthai.vohoctrunghoa.presentation.insets.InsetsConstraintLayout>
 

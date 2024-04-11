@@ -16,11 +16,7 @@ class VoHocFragment : BackActionBarFragment<FragmentVohocBinding>() {
 
         setTitle(name)
 
-        binding.pdfViewer.initWithUrl(
-            url = resource,
-            lifecycleCoroutineScope = lifecycleScope,
-            lifecycle = lifecycle
-        )
+        binding.pdfView.fromAsset(resource).load()
 
     }
 
