@@ -11,14 +11,14 @@ open class HideAbleFragment : Fragment() {
     /**
      * Lifecycle that based on [onFragmentDisplayed] and [onFragmentHidden] callbacks
      */
-    private val visibleViewLifecycle = SimpleLifecycleOwner()
+//    private val visibleViewLifecycle = SimpleLifecycleOwner()
 
     private var activityStarted : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
+//        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
     }
 
     override fun onStart() {
@@ -40,7 +40,7 @@ open class HideAbleFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+//        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
 
         super.onDestroy()
     }
@@ -51,7 +51,7 @@ open class HideAbleFragment : Fragment() {
      */
     @CallSuper
     open fun onFragmentHidden() {
-        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
+//        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
     }
 
     /**
@@ -60,7 +60,7 @@ open class HideAbleFragment : Fragment() {
      */
     @CallSuper
     open fun onFragmentDisplayed() {
-        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_START)
+//        visibleViewLifecycle.handleLifecycleEvent(Lifecycle.Event.ON_START)
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
@@ -73,15 +73,15 @@ open class HideAbleFragment : Fragment() {
         }
     }
 
-    protected class SimpleLifecycleOwner : LifecycleOwner {
-        private val lifecycle = LifecycleRegistry(this)
-
-        override fun getLifecycle(): Lifecycle {
-            return lifecycle
-        }
-
-        internal fun handleLifecycleEvent(event: Lifecycle.Event) {
-            lifecycle.handleLifecycleEvent(event)
-        }
-    }
+//    protected class SimpleLifecycleOwner : LifecycleOwner {
+//        private val lifecycle = LifecycleRegistry(this)
+//
+//        override fun getLifecycle(): Lifecycle {
+//            return lifecycle
+//        }
+//
+//        internal fun handleLifecycleEvent(event: Lifecycle.Event) {
+//            lifecycle.handleLifecycleEvent(event)
+//        }
+//    }
 }

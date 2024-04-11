@@ -10,17 +10,14 @@ import java.io.File
 
 class VoHocFragment : BackActionBarFragment<FragmentVohocBinding>() {
     private var name : String by safeArgs("name")
-    private var resource : Int by safeArgs("resource")
+    private var resource : String by safeArgs("resource")
     override fun initView() {
         super.initView()
 
         setTitle(name)
 
-        val url = Uri.parse("android.resource://${context?.packageName}/${resource}")
-        val file = File(url.toString())
-
         binding.pdfViewer.initWithUrl(
-            url = url.toString(),
+            url = resource,
             lifecycleCoroutineScope = lifecycleScope,
             lifecycle = lifecycle
         )
@@ -32,7 +29,7 @@ class VoHocFragment : BackActionBarFragment<FragmentVohocBinding>() {
     }
 
     companion object {
-        fun newInstance(name: String, resource: Int) = VoHocFragment().apply {
+        fun newInstance(name: String, resource: String) = VoHocFragment().apply {
             this.name = name
             this.resource = resource
         }
