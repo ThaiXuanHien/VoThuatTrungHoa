@@ -22,11 +22,11 @@ def code = versionProperties['versionCode'].toInteger()
 def name = versionProperties['versionName']
 
 android {
-    namespace 'com.hienthai.baseprojectmvvm'
+    namespace 'com.hienthai.vohoctrunghoa'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.hienthai.baseprojectmvvm"
+        applicationId "com.hienthai.vohoctrunghoa"
         minSdk 24
         targetSdk 34
         versionCode code
@@ -142,5 +142,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
 
     implementation 'com.markodevcic:peko:3.0.1'
+
+    implementation 'io.github.afreakyelf:Pdf-Viewer:2.1.1'
 
 }
