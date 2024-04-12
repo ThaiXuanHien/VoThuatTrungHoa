@@ -1,11 +1,8 @@
 package com.hienthai.vohoctrunghoa.presentation.screens
 
-import android.net.Uri
-import androidx.lifecycle.lifecycleScope
 import com.hienthai.vohoctrunghoa.databinding.FragmentVohocBinding
 import com.hienthai.vohoctrunghoa.extensions.safeArgs
 import com.hienthai.vohoctrunghoa.presentation.BackActionBarFragment
-import java.io.File
 
 
 class VoHocFragment : BackActionBarFragment<FragmentVohocBinding>() {

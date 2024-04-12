@@ -20,7 +20,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             rcvVohoc.addItemDecoration(
                 DividerItemDecoration(
                     context,
-                    LinearLayoutManager.HORIZONTAL
+                    LinearLayoutManager.VERTICAL
                 )
             )
 
